@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "973313774285",
+    "project_id": "marketplace-admin-flutter",
+    "storage_bucket": "marketplace-admin-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:973313774285:android:aa53f2d5d3a68cd3a98f84",
+        "android_client_info": {
+          "package_name": "br.com.matheus.flutter_app_marketplace_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "973313774285-8429itfrs5kn6j5eooma2dk137codgi9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDR_dDDFDQgoKprOPb9InM8RajDsbtHmA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "973313774285-8429itfrs5kn6j5eooma2dk137codgi9.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "973313774285-bbvedspi3fr4uisicrtlota24l3ekkqh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.matheus.flutterappmarketplaceadmin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
