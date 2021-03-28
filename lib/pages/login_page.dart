@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_marketplace_admin/component/inputField_component.dart';
+import 'package:flutter_app_marketplace_admin/services/login_service.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -7,6 +8,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final _loginService = LoginService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,23 +32,33 @@ class _LoginPageState extends State<LoginPage> {
                     icon: Icons.person_outline,
                     placeholder: "Username",
                     password: false,
+                    validator: _loginService.outEmail,
+                    onChanged: _loginService.changeEmail,
                   ),
                   InputFieldComponent(
                     icon: Icons.lock_outline,
                     placeholder: "Password",
                     password: true,
+                    validator: _loginService.outPassword,
+                    onChanged: _loginService.changePassword,
                   ),
                   SizedBox(
                     height: 32,
                   ),
-                  SizedBox(
-                    height: 50,
-                    child: RaisedButton(
-                        color: Colors.pinkAccent,
-                        child: Text("Login"),
-                        textColor: Colors.white,
-                        onPressed: () {}
-                    ),
+                  StreamBuilder<bool>(
+                    stream: _loginService.outBtnValid,
+                    builder: (context, snapshot) {
+                      return SizedBox(
+                        height: 50,
+                        child: RaisedButton(
+                            color: Colors.pinkAccent,
+                            child: Text("Login"),
+                            textColor: Colors.white,
+                            disabledColor: Colors.pinkAccent.withAlpha(140),
+                            onPressed: snapshot.hasData ? () {} : null
+                        ),
+                      );
+                    }
                   )
                 ],
               ),

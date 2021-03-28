@@ -8,6 +8,9 @@ class LoginService extends BlocBase with LoginValidator {
 
   Stream<String> get outEmail => _emailController.stream.transform(emailValidator);
   Stream<String> get outPassword => _passwordController.stream.transform(passwordValidator);
+  Function(String) get changeEmail => _emailController.sink.add;
+  Function(String) get changePassword => _passwordController.sink.add;
+  Stream<bool> get outBtnValid => Observable.combineLatest2(outEmail, outPassword, (a, b) => true);
 
   @override
   void dispose() {
