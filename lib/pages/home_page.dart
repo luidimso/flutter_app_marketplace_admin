@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_marketplace_admin/pages/user_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -63,24 +64,24 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      body: PageView(
-        controller: _pageController,
-        onPageChanged: (page) {
-          setState(() {
-            _page = page;
-          });
-        },
-        children: <Widget>[
-          Container(
-            color: Colors.red,
-          ),
-          Container(
-            color: Colors.yellow,
-          ),
-          Container(
-            color: Colors.green
-          )
-        ],
+      body: SafeArea(
+        child: PageView(
+          controller: _pageController,
+          onPageChanged: (page) {
+            setState(() {
+              _page = page;
+            });
+          },
+          children: <Widget>[
+            UserPage(),
+            Container(
+              color: Colors.yellow,
+            ),
+            Container(
+                color: Colors.green
+            )
+          ],
+        ),
       ),
     );
   }
