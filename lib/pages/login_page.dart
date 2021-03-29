@@ -55,7 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text("Login"),
                             textColor: Colors.white,
                             disabledColor: Colors.pinkAccent.withAlpha(140),
-                            onPressed: snapshot.hasData ? () {} : null
+                            onPressed: snapshot.hasData ? _loginService.submit : null
                         ),
                       );
                     }

@@ -1,41 +1,63 @@
 {
   "project_info": {
-    "project_number": "973313774285",
-    "project_id": "marketplace-admin-flutter",
-    "storage_bucket": "marketplace-admin-flutter.appspot.com"
+    "project_number": "133915380760",
+    "project_id": "marketplace-flutter-9195e",
+    "storage_bucket": "marketplace-flutter-9195e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:973313774285:android:aa53f2d5d3a68cd3a98f84",
+        "mobilesdk_app_id": "1:133915380760:android:e3c567b663280c4593c76d",
         "android_client_info": {
-          "package_name": "br.com.matheus.flutter_app_marketplace_admin"
+          "package_name": "br.com.luidimso.flutter_app_marketplace"
         }
       },
       "oauth_client": [
         {
-          "client_id": "973313774285-8429itfrs5kn6j5eooma2dk137codgi9.apps.googleusercontent.com",
+          "client_id": "133915380760-hqu5dtoo36ldll074tdjirgoi57l3uf9.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBDR_dDDFDQgoKprOPb9InM8RajDsbtHmA"
+          "current_key": "AIzaSyDA6jaPUD2s1KNj85EsrQnEw_s2MqlfVCk"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "973313774285-8429itfrs5kn6j5eooma2dk137codgi9.apps.googleusercontent.com",
+              "client_id": "133915380760-hqu5dtoo36ldll074tdjirgoi57l3uf9.apps.googleusercontent.com",
               "client_type": 3
-            },
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133915380760:android:568b85aca69c33d393c76d",
+        "android_client_info": {
+          "package_name": "br.com.matheus.flutter_app_marketplace_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133915380760-hqu5dtoo36ldll074tdjirgoi57l3uf9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDA6jaPUD2s1KNj85EsrQnEw_s2MqlfVCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
             {
-              "client_id": "973313774285-bbvedspi3fr4uisicrtlota24l3ekkqh.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "br.com.matheus.flutterappmarketplaceadmin"
-              }
+              "client_id": "133915380760-hqu5dtoo36ldll074tdjirgoi57l3uf9.apps.googleusercontent.com",
+              "client_type": 3
             }
           ]
         }
