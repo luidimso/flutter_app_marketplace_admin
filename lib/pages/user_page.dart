@@ -1,9 +1,13 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_marketplace_admin/component/userTile_component.dart';
+import 'package:flutter_app_marketplace_admin/services/user_service.dart';
 
 class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final _userService = BlocProvider.of<UserService>(context);
+
     return Column(
       children: <Widget>[
         Padding(
@@ -28,14 +32,35 @@ class UserPage extends StatelessWidget {
           ),
         ),
         Expanded(
-            child: ListView.separated(
-                itemBuilder: (context, index) {
-                  return UserTileComponent();
-                },
-                separatorBuilder: (context, index) {
-                  return Divider();
-                },
-                itemCount: 5
+            child: StreamBuilder<List>(
+              stream: _userService.outUsers,
+              builder: (context, snapshot) {
+                if(!snapshot.hasData) {
+                  return Center(
+                    child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Colors.pinkAccent),
+                    ),
+                  );
+                } else if(snapshot.data.length == 0) {
+                  return Center(
+                    child: Text("No user found!",
+                      style: TextStyle(
+                        color: Colors.pinkAccent
+                      ),
+                    ),
+                  );
+                } else {
+                  return ListView.separated(
+                      itemBuilder: (context, index) {
+                        return UserTileComponent(snapshot.data[index]);
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider();
+                      },
+                      itemCount: snapshot.data.length
+                  );
+                }
+              },
             )
         )
       ],

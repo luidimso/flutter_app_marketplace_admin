@@ -3,9 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rxdart/rxdart.dart';
 
 class UserService extends BlocBase {
-  final _userController = BehaviorSubject();
+  final _userController = BehaviorSubject<List>();
   Map<String, Map<String, dynamic>> _users = {};
   Firestore _firestore = Firestore.instance;
+  Stream<List> get outUsers => _userController.stream;
 
   UserService() {
     _addUsersListener();
