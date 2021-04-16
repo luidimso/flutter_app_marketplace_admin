@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app_marketplace_admin/component/orderTileHeader_component.dart';
 
 class OrderTileComponent extends StatelessWidget {
   @override
@@ -26,6 +27,7 @@ class OrderTileComponent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
+                  OrderTileHeaderComponent(),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
