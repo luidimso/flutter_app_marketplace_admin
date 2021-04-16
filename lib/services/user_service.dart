@@ -65,4 +65,20 @@ class UserService extends BlocBase {
   void _unsubscribeToOrders(String uid) {
     _users[uid]["subscription"].cancel();
   }
+
+  void search(String search) {
+    if(search.trim().isEmpty) {
+      _userController.add(_users.values.toList());
+    } else {
+      _userController.add(_filter(search.trim()));
+    }
+  }
+
+  List<Map<String, dynamic>> _filter(String search) {
+    List<Map<String, dynamic>> filteredUsers = _users.values.toList();
+    filteredUsers.retainWhere((element) {
+      return element["name"].toUpperCase().contains(search.toUpperCase());
+    });
+    return filteredUsers;
+  }
 }

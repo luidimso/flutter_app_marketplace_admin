@@ -29,6 +29,7 @@ class UserPage extends StatelessWidget {
                 ),
                 border: InputBorder.none
             ),
+            onChanged: _userService.search,
           ),
         ),
         Expanded(
