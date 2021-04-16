@@ -81,4 +81,8 @@ class UserService extends BlocBase {
     });
     return filteredUsers;
   }
+
+  Map<String, dynamic> getUser(String id) {
+    return _users[id];
+  }
 }

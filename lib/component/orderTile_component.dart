@@ -17,6 +17,7 @@ class OrderTileComponent extends StatelessWidget {
       ),
       child: Card(
         child: ExpansionTile(
+          initiallyExpanded: order.data["status"] != 4,
           title: Text("#${order.documentID.substring(order.documentID.length - 7, order.documentID.length)} - ${states[order.data["status"]]}",
             style: TextStyle(
               color: order.data["status"] == 4 ? Colors.green : Colors.grey[850]
@@ -33,14 +34,14 @@ class OrderTileComponent extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  OrderTileHeaderComponent(),
+                  OrderTileHeaderComponent(order),
                   Column(
                     mainAxisSize: MainAxisSize.min,
                     children: order.data["products"].map<Widget>((product) {
                       return ListTile(
                         title: Text(product["resume"]["title"] + " " + product["size"]),
                         subtitle: Text(product["category"] + " / " + product["product"]),
-                        trailing: Text("Text",
+                        trailing: Text(product["quantity"].toString(),
                           style: TextStyle(
                               fontSize: 20
                           ),
@@ -53,17 +54,24 @@ class OrderTileComponent extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Firestore.instance.collection("users").document(order["user"]).collection("orders").document(order.documentID).delete();
+                          order.reference.delete();
+                        },
                         child: Text("Delete"),
                         textColor: Colors.red,
                       ),
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: order.data["status"] > 1 ? () {
+                          order.reference.updateData({"status": order.data["status"] - 1});
+                        } : null,
                         child: Text("Back step"),
                         textColor: Colors.grey[850],
                       ),
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: order.data["status"] < 4 ? () {
+                          order.reference.updateData({"status": order.data["status"] + 1});
+                        } : null,
                         child: Text("Next step"),
                         textColor: Colors.green,
                       )
