@@ -1,5 +1,6 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app_marketplace_admin/pages/order_page.dart';
 import 'package:flutter_app_marketplace_admin/pages/user_page.dart';
 import 'package:flutter_app_marketplace_admin/services/user_service.dart';
 
@@ -80,9 +81,7 @@ class _HomePageState extends State<HomePage> {
             },
             children: <Widget>[
               UserPage(),
-              Container(
-                color: Colors.yellow,
-              ),
+              OrderPage(),
               Container(
                   color: Colors.green
               )
