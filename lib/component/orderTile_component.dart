@@ -1,7 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_marketplace_admin/component/orderTileHeader_component.dart';
 
 class OrderTileComponent extends StatelessWidget {
+  final DocumentSnapshot order;
+  final states = ["", "Preparing", "Transporting", "Awaiting delivery", "Delivered"];
+
+  OrderTileComponent(this.order);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -11,9 +17,9 @@ class OrderTileComponent extends StatelessWidget {
       ),
       child: Card(
         child: ExpansionTile(
-          title: Text("#123 - Test",
+          title: Text("#${order.documentID.substring(order.documentID.length - 7, order.documentID.length)} - ${states[order.data["status"]]}",
             style: TextStyle(
-              color: Colors.green
+              color: order.data["status"] == 4 ? Colors.green : Colors.grey[850]
             ),
           ),
           children: <Widget>[
@@ -30,18 +36,18 @@ class OrderTileComponent extends StatelessWidget {
                   OrderTileHeaderComponent(),
                   Column(
                     mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ListTile(
-                        title: Text("Test"),
-                        subtitle: Text("Test"),
+                    children: order.data["products"].map<Widget>((product) {
+                      return ListTile(
+                        title: Text(product["resume"]["title"] + " " + product["size"]),
+                        subtitle: Text(product["category"] + " / " + product["product"]),
                         trailing: Text("Text",
                           style: TextStyle(
-                            fontSize: 20
+                              fontSize: 20
                           ),
                         ),
                         contentPadding: EdgeInsets.zero,
-                      )
-                    ],
+                      );
+                    }).toList(),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,

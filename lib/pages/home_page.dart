@@ -2,6 +2,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app_marketplace_admin/pages/order_page.dart';
 import 'package:flutter_app_marketplace_admin/pages/user_page.dart';
+import 'package:flutter_app_marketplace_admin/services/order_service.dart';
 import 'package:flutter_app_marketplace_admin/services/user_service.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,6 +14,7 @@ class _HomePageState extends State<HomePage> {
   PageController _pageController;
   int _page = 0;
   UserService _userService;
+  OrderService _orderService;
 
   @override
   void initState() {
@@ -20,6 +22,7 @@ class _HomePageState extends State<HomePage> {
     super.initState();
     _pageController = PageController();
     _userService = UserService();
+    _orderService = OrderService();
   }
 
   @override
@@ -72,20 +75,23 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: BlocProvider<UserService>(
           bloc: _userService,
-          child: PageView(
-            controller: _pageController,
-            onPageChanged: (page) {
-              setState(() {
-                _page = page;
-              });
-            },
-            children: <Widget>[
-              UserPage(),
-              OrderPage(),
-              Container(
-                  color: Colors.green
-              )
-            ],
+          child: BlocProvider<OrderService>(
+            bloc: _orderService,
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (page) {
+                setState(() {
+                  _page = page;
+                });
+              },
+              children: <Widget>[
+                UserPage(),
+                OrderPage(),
+                Container(
+                    color: Colors.green
+                )
+              ],
+            ),
           ),
         )
       ),
