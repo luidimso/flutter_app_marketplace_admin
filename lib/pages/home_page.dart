@@ -4,6 +4,7 @@ import 'package:flutter_app_marketplace_admin/pages/order_page.dart';
 import 'package:flutter_app_marketplace_admin/pages/user_page.dart';
 import 'package:flutter_app_marketplace_admin/services/order_service.dart';
 import 'package:flutter_app_marketplace_admin/services/user_service.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -95,6 +96,51 @@ class _HomePageState extends State<HomePage> {
           ),
         )
       ),
+      floatingActionButton: _buildFloatingButton(),
     );
+  }
+
+  Widget _buildFloatingButton() {
+    switch(_page) {
+      case 0:
+        return null;
+        break;
+      case 1:
+        return SpeedDial(
+          child: Icon(Icons.sort),
+          backgroundColor: Colors.pinkAccent,
+          overlayOpacity: 0.4,
+          overlayColor: Colors.black,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.arrow_downward,
+                color: Colors.pinkAccent,
+              ),
+              backgroundColor: Colors.white,
+              label: "Done on bottom",
+              labelStyle: TextStyle(
+                fontSize: 14
+              ),
+              onTap: () {
+                _orderService.setSortCriteria(SortCriteria.DONE_LAST);
+              }
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.arrow_upward,
+                color: Colors.pinkAccent,
+              ),
+              backgroundColor: Colors.white,
+              label: "Done on top",
+              labelStyle: TextStyle(
+                  fontSize: 14
+              ),
+              onTap: () {
+                _orderService.setSortCriteria(SortCriteria.DONE_FIRST);
+              }
+            )
+          ],
+        );
+        break;
+    }
   }
 }
